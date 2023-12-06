@@ -1,0 +1,94 @@
+<html>
+    <head><title>Simulador de agua</title>
+        <script type="text/javascript" src="Js Color.js"></script>
+    </head>
+    <body onload="inicializa()">
+        <canvas id="canvas" onmousedown="click(event)" onmouseup="click(event)"></canvas>
+        <input type="button" style="background: blue;border: 1px solid white;  border-radius: 50%; width: 25px; height: 25px;"  onclick="Agua()" >
+        <input type="button" style="background: black;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;"  onclick="Muro()">
+        <input type="button" style="background: #ECE2C6;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Arena()">
+        <input type="button" style="background: #917250;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Madera()">
+        <input type="button" style="background: #FE0500;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Fuego()">
+        <input type="button" style="background: #A8BB19;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Acido()">
+        <input type="button" style="background: #5c9d14;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Flor()">
+        <input type="button" style="background: #Ff7514;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Grifo()">
+        <input type="button" style="background: #9dcfdd;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Hielo()">
+        <input type="button" style="background: #Cf1020;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Lava()">
+        <input type="button" style="background: #fbfbfb;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Nitrogeno()">
+        <input type="button" style="background: black;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Arcoiris()" id="arcoiris">
+        <input type="button" style="background: black;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Multicolor()" id="multicolor">
+        <input type="button" style="background: #13C0E9;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Rayo()">
+        <input type="button" style="background: #434B4D;border: 1px solid white; border-radius: 50%; width: 25px; height: 25px;" onclick="Metal()">
+        <br />
+        <button onclick="Clear()">Clear</button>
+        <button onclick="Vista()">POV</button>
+        <br>
+        <button data-jscolor="{value:'#000000', onInput:'Color()'}" id="color" ></button>
+        <a style="margin: 5px;font-family:sans-serif;"; id="gravedad">Gravity
+        <input type="checkbox"  style="width: 15px; height: 15px;" onchange="Gravedad()" id="gravedad2"></a>
+        <a style="margin: 5px;font-family:sans-serif;"; id="continuidad">Continuous
+            <input type="checkbox"  style="width: 15px; height: 15px;" onchange="Continuo()" id="continuidad2"></a>
+        <br />
+        <p style="margin: 5px;font-family:sans-serif;";>Brush Size</p>
+        <input type="range" min="0" max="19" value="3" id="Brocha">
+        <p style="margin: 5px;font-family:sans-serif;";>Speed</p>
+        <input type="range" min="15" max="60" value="30" id="speed" onchange="Speed()">
+        <br>
+        <textarea id="copy/paste" ></textarea>
+        <br>
+        <button onclick="imprimir()">Write</button>
+        <button onclick="importar()">Import</button>
+        <script>
+            var div = document.getElementById("multicolor");
+            var Red = 255
+            var Green = 0
+            var Blue = 0;
+
+            setInterval(principal,1000/30)
+            function principal() {
+                if (Red == 255 && Green != 255) {
+                    Green += 5;
+                }
+                if (Red > 5 && Green == 255) {
+                    Red -= 5;
+                }
+                if (Blue != 255 && Green == 255) {
+                    Blue += 5;
+                }
+                if (Green > 5 && Blue == 255) {
+                    Green -= 5;
+                }
+                if (Blue == 255 && Red != 255) {
+                    Red += 5;
+                }
+                if (Blue > 5 && Red == 255) {
+                    Blue -= 5;
+                }
+                if (Green < 16) {
+                    Green = "0"+Green.toString(16)
+                }
+                else{
+                    Green = Green.toString(16)
+                }
+                if (Blue < 16) {
+                    Blue = "0"+Blue.toString(16)
+                }
+                else{
+                    Blue = Blue.toString(16)
+                }
+                if (Red < 16) {
+                    Red = "0"+Red.toString(16)
+                }
+                else{
+                    Red = Red.toString(16)
+                }
+                div.style.background = "#"+Red+Green+Blue;
+                Red = parseInt(Red,16)
+                Green = parseInt(Green,16)
+                Blue = parseInt(Blue,16)
+            }
+                
+        </script>
+        <script src="Juego.js"></script>
+    </body>
+</html>
